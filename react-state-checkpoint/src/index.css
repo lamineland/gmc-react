@@ -1,0 +1,123 @@
+/* ==========================================================================
+   Design tokens + base styles (vanilla CSS)
+   ========================================================================== */
+
+:root {
+  color-scheme: light dark;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+
+  /* Surfaces */
+  --bg: #f5f6fa;
+  --bg-glow: rgb(99 102 241 / 0.14);
+  --bg-glow-soft: rgb(129 140 248 / 0.1);
+  --surface: #ffffff;
+  --surface-muted: #f1f2f6;
+  --hairline: rgb(23 26 33 / 0.08);
+
+  /* Ink */
+  --ink: #171a21;
+  --ink-muted: #5b6270;
+
+  /* Accent */
+  --accent: #4f46e5;
+  --accent-strong: #4338ca;
+  --accent-soft: #eceefe;
+  --accent-ink: #3730a3;
+
+  /* Status */
+  --status-on: #15803d;
+  --status-on-soft: #e7f6ec;
+
+  /* Elevation — layered transparent shadows instead of depth borders */
+  --shadow-card:
+    0px 0px 0px 1px oklch(0 0 0 / 0.05),
+    0px 1px 2px -1px oklch(0 0 0 / 0.06),
+    0px 16px 40px -16px oklch(0 0 0 / 0.16);
+  --shadow-button:
+    0px 1px 2px -1px oklch(0 0 0 / 0.12),
+    0px 6px 16px -8px oklch(0 0 0 / 0.2);
+  --shadow-button-hover:
+    0px 1px 2px -1px oklch(0 0 0 / 0.16),
+    0px 10px 24px -8px oklch(0 0 0 / 0.28);
+
+  /* Image outline — pure black at 10% in light mode */
+  --image-outline: oklch(0 0 0 / 0.1);
+
+  /* Radii — concentric scale: outer radius = inner radius + padding */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1117;
+    --bg-glow: rgb(99 102 241 / 0.18);
+    --bg-glow-soft: rgb(129 140 248 / 0.12);
+    --surface: #171a23;
+    --surface-muted: #232733;
+    --hairline: rgb(255 255 255 / 0.08);
+    --ink: #f2f4f8;
+    --ink-muted: #9aa3b2;
+    --accent: #6366f1;
+    --accent-strong: #4f46e5;
+    --accent-soft: rgb(99 102 241 / 0.18);
+    --accent-ink: #c7cbff;
+    --status-on: #4ade80;
+    --status-on-soft: rgb(74 222 128 / 0.14);
+    --shadow-card:
+      0px 0px 0px 1px oklch(1 0 0 / 0.08),
+      0px 16px 40px -16px oklch(0 0 0 / 0.6);
+    --shadow-button:
+      0px 0px 0px 1px oklch(1 0 0 / 0.06),
+      0px 6px 16px -8px oklch(0 0 0 / 0.5);
+    --shadow-button-hover:
+      0px 0px 0px 1px oklch(1 0 0 / 0.1),
+      0px 10px 24px -8px oklch(0 0 0 / 0.6);
+    /* Image outline — pure white at 10% in dark mode */
+    --image-outline: oklch(1 0 0 / 0.1);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  background-color: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+::selection {
+  background-color: var(--accent-soft);
+  color: var(--accent-ink);
+}
+
+/* Reduced motion: every static cue (color, icon, label) still carries the
+   state — only the movement is dropped. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
