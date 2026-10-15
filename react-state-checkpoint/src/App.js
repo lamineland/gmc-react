@@ -12,12 +12,32 @@ class App extends Component {
         imgSrc: "https://randomuser.me/api/portraits/men/32.jpg",
         profession: "Developer"
       },
-      show: false
+      show: false,
+      elapsedSeconds: 0
     };
   }
 
+  componentDidMount() {
+    this.mountedAt = Date.now();
+    this.intervalId = setInterval(() => {
+      this.setState({
+        elapsedSeconds: Math.floor((Date.now() - this.mountedAt) / 1000)
+      });
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
+  }
+
+  formatElapsed(totalSeconds) {
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  }
+
   render() {
-    const { person, show } = this.state;
+    const { person, show, elapsedSeconds } = this.state;
 
     return (
       <div className="App">
@@ -73,6 +93,27 @@ class App extends Component {
             </div>
 
             <footer className="profile-card__footer">
+              <div className="elapsed-field">
+                <span className="elapsed-field__label">
+                  <svg
+                    className="elapsed-field__icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                  Time since mounted
+                </span>
+                <span className="elapsed-field__value">
+                  {this.formatElapsed(elapsedSeconds)}
+                </span>
+              </div>
               <button
                 type="button"
                 className="toggle-button"
