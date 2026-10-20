@@ -1,0 +1,86 @@
+/**
+ * TaskFilter.css - toolbar with the status filters and sorting.
+ */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+/* Segmented "All / Active / Completed" control */
+.filter-group {
+  display: inline-flex;
+  background: #eef1f9;
+  border-radius: 999px;
+  padding: 0.25rem;
+  gap: 0.2rem;
+}
+
+.filter-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: none;
+  background: transparent;
+  color: var(--color-muted);
+  font-size: 0.86rem;
+  font-weight: 600;
+  padding: 0.42rem 0.95rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.filter-button:hover {
+  color: var(--color-text);
+}
+
+.filter-button--active {
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+}
+
+/* Small counter badge inside each filter button */
+.filter-button__count {
+  background: rgba(107, 114, 128, 0.15);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  padding: 0.05rem 0.45rem;
+}
+
+.filter-button--active .filter-button__count {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.sort-field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sort-field__label {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.sort-field__select {
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-surface);
+  padding: 0.45rem 0.7rem;
+  font-size: 0.88rem;
+  font-family: inherit;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.sort-field__select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.18);
+}
